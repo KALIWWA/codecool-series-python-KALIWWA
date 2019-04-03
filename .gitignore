@@ -148,4 +148,4 @@ setenv.sh
 setenv.ps1
 
 # database #
-dump_1000_shows/
+data/dump_1000_shows/
