@@ -1,5 +1,4 @@
-from flask import Flask, render_template, url_for
-from data import queries
+from flask import Flask, render_template
 
 app = Flask('codecool_series')
 
@@ -8,6 +7,12 @@ app = Flask('codecool_series')
 def index():
     shows = queries.get_shows()
     return render_template('index.html', shows=shows)
+
+
+@app.route('/tv-show/<show_id>')
+def show_details(show_id):
+    show = queries.get_show_details(show_id)
+    return render_template('show_details.html', show=show)
 
 
 @app.route('/design')
