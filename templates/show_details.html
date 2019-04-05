@@ -46,11 +46,7 @@
     </header>
     <section>
         <nav class="breadcrumb">
-            <a href="#">Game of Thrones</a>
-            <span class="separator">&gt;</span>
-            <a href="#">Season 3</a>
-            <span class="separator">&gt;</span>
-            <a href="#">Episode 8</a>
+            <a href="#">{{ show.title }}</a>
         </nav>
         <h1 class="title text-center">Welcome page</h1>
         <div class="card">
@@ -66,14 +62,14 @@
 
         <div class="card detailed-view">
             <div class="row">
-                <iframe class="poster col col-third" src="{{show.trailer.replace('watch?v=', 'embed/')}}"></iframe>
-{#                <iframe width="400" height="225" src="{{show.trailer.replace('watch?v=', 'embed/')}}" frameborder="0"#}
-{#                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"#}
-{#                        allowfullscreen></iframe>#}
+                <iframe class="col col-third" width="400" height="400"
+                        src="{{ show.trailer.replace('watch?v=', 'embed/') }}" frameborder="0"
+                        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+                </iframe>
                 <div class="col col-twothird">
                     <h2>{{ show.title }}</h2>
-                    <p class="small grayed">{{ show.runtime }}<span class="separator">|</span>
-{#                        {{ show.genres.join(', ') }}#}
+                    <p class="small grayed">{{ show.runtime }} min<span class="separator">|</span>
                         {% for genre in show.genres %}
                             {{ genre.join(' ,') }}
                         {% endfor %}
@@ -84,13 +80,18 @@
             <div>
                 <p><b>Stars:</b>&nbsp;
                     {% for actor in show.actors %}
-                    <a href="#">{{ actor }} </a> |
+                        <a href="#">{{ actor }} </a> |
+                    {% endfor %}
+                </p>
+                <p><b>Seasons:</b>&nbsp;
+                    {% for season in show.seasons %}
+                        <a href="#">{{ season }} </a> |
                     {% endfor %}
                 </p>
             </div>
             <div>
                 <p>
-                    <a href="{{ show.homepage }}">Homepage</a>
+                    <a href="{{ show.homepage }}">{{ show.title }} Homepage</a>
                 </p>
             </div>
         </div>
