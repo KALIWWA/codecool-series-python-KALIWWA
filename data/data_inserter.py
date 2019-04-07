@@ -1,5 +1,5 @@
 import requests
-from data_manager import execute_select, execute_dml_statement
+from db_connection import execute_select, execute_dml_statement
 from init_db import init_db, create_schema
 from psycopg2 import DataError
 import datetime

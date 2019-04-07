@@ -1,7 +1,7 @@
-from data import data_manager
+from data import db_connection
 
 
-@data_manager.connection_handler
+@db_connection.connection_handler
 def get_shows(cursor):
     sql_string = """
                 SELECT id, title 
@@ -11,7 +11,7 @@ def get_shows(cursor):
     return shows
 
 
-@data_manager.connection_handler
+@db_connection.connection_handler
 def get_show_details(cursor, show_id):
     sql_string = """
                 SELECT shows.id, 
@@ -37,3 +37,28 @@ def get_show_details(cursor, show_id):
     show_details = cursor.fetchone()
     return show_details
 
+
+@db_connection.connection_handler
+def get_shows_for_table(cursor, offset=0, order_parameter='shows.rating'):
+    sql_string = """
+                SELECT shows.title, 
+                    to_char(shows.year, 'YYYY') as year, 
+                    to_char(shows.runtime, '999') as runtime,
+                    COALESCE(shows.trailer, 'https://www.youtube.com/watch?v=mO-OpFjHRbE') as trailer,
+                    COALESCE(shows.homepage, 'https://hbogo.pl/') as homepage, 
+                    to_char(shows.rating, '999D99S') as rating,  
+                    (array_agg(DISTINCT genres.name))[0:3] as genres
+                FROM shows
+                LEFT JOIN show_genres on shows.id = show_genres.show_id
+                INNER JOIN genres on show_genres.genre_id = genres.id
+                GROUP BY shows.id
+                ORDER BY rating DESC
+                OFFSET %(data_start)s
+                LIMIT 15;"""
+    conditions = {'data_start': offset}
+    cursor.execute(sql_string, conditions)
+    shows = cursor.fetchall()
+    # print(shows)
+    return shows
+
+# get_shows_for_table()
