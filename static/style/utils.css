@@ -3,6 +3,11 @@
     text-shadow: 0 0 4px rgba(255, 255, 255, .3), 0 0 6px rgba(255, 255, 255, .2);
 }
 
+.title-on-white {
+    color: #278bc4;
+    text-shadow: 0 0 4px #bfe0f2, 0 0 6px #eaf5fb;
+}
+
 .text-center {
     text-align: center;
 }
@@ -20,3 +25,4 @@
 
     padding: 0 5px;
 }
+

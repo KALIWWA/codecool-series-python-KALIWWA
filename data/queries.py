@@ -16,11 +16,11 @@ def get_show_details(cursor, show_id):
     sql_string = """
                 SELECT shows.id, 
                     shows.title, 
-                    shows.year, 
+                    to_char(shows.year, 'YYYY') as year, 
                     shows.overview, 
-                    shows.runtime, 
-                    shows.trailer, 
-                    shows.homepage, 
+                    to_char(shows.runtime, '999') as runtime, 
+                    COALESCE(shows.trailer, 'https://www.youtube.com/watch?v=mO-OpFjHRbE') as trailer, 
+                    COALESCE(shows.homepage, 'https://hbogo.pl/') as homepage, 
                     shows.rating, 
                     array_agg(DISTINCT seasons.title) as seasons, 
                     array_agg(DISTINCT actors.name) as actors, 
@@ -41,7 +41,8 @@ def get_show_details(cursor, show_id):
 @db_connection.connection_handler
 def get_shows_for_table(cursor, offset=0):
     sql_string = """
-                SELECT shows.title, 
+                SELECT shows.id,
+                    shows.title, 
                     to_char(shows.year, 'YYYY') as year, 
                     to_char(shows.runtime, '999') as runtime,
                     COALESCE(shows.trailer, 'https://www.youtube.com/watch?v=mO-OpFjHRbE') as trailer,

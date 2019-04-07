@@ -32,7 +32,7 @@ function showsTable(shows) {
 
 		let tableRow = `
 				<tr>
-                    <td>${shows[i]['title']}</td>
+                    <td><a href="/tv-show/${shows[i]['id']}">${shows[i]['title']}</a></td>
                     <td>${shows[i]['year']}</td>
                     <td>${shows[i]['runtime']}</td>
                     <td>${shows[i]['genres']}</td>
