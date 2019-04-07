@@ -39,7 +39,7 @@ def get_show_details(cursor, show_id):
 
 
 @db_connection.connection_handler
-def get_shows_for_table(cursor, offset=0, order_parameter='shows.rating'):
+def get_shows_for_table(cursor, offset=0):
     sql_string = """
                 SELECT shows.title, 
                     to_char(shows.year, 'YYYY') as year, 

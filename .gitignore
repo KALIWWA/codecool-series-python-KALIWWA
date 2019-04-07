@@ -147,5 +147,3 @@ fabric.properties
 setenv.sh
 setenv.ps1
 
-# database #
-data/dump_1000_shows/
