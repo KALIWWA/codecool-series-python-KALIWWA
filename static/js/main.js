@@ -1,6 +1,6 @@
 function collectData() {
 	let showsRequest = new XMLHttpRequest();
-	showsRequest.open('GET', '/table')
+	showsRequest.open('GET', '/table');
 	showsRequest.addEventListener('load', function () {
 		let shows = JSON.parse(showsRequest.responseText);
 		console.log(shows);
@@ -27,7 +27,7 @@ function showsTable(shows) {
             `;
 	mainTable.insertAdjacentHTML('afterbegin', tableHeaders);
 
-	for (let i = 0; i <= shows.length; i++ ) {
+	for (let i = 0; i <= shows.length; i++) {
 		let tableBody = document.getElementById('tableBody')
 
 		let tableRow = `

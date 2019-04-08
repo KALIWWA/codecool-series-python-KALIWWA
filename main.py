@@ -22,7 +22,7 @@ def design():
     return render_template('design.html')
 
 
-@app.route('/table', methods=['GET','POST'])
+@app.route('/table', methods=['GET', 'POST'])
 def json_table():
     shows_table = shows.check_shows()
     return jsonify(shows_table)
@@ -30,7 +30,6 @@ def json_table():
 
 @app.route('/tv-show/<show_id>/<season_id>')
 def show_season_details(show_id, season_id):
-
     pass
 
 
