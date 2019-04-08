@@ -36,3 +36,20 @@ def get_show_details(cursor, show_id):
     cursor.execute(sql_string, {'id': show_id})
     show_details = cursor.fetchone()
     return show_details
+
+
+@db_connection.connection_handler
+def get_season_details(cursor, season_id):
+    sql_string = """SELECT
+                    seasons.id,
+                    seasons.season_number,
+                    seasons.title,
+                    seasons.overview,
+                    array_agg(shows.title) as show_title
+                    FROM seasons
+                    LEFT JOIN shows on seasons.show_id = shows.id
+                    WHERE seasons.id = %{season_id}s
+                    GROUP BY seasons.id;"""
+    cursor.execute(sql_string, {'season_id': season_id})
+    season_details = cursor.fetchone()
+    return season_details

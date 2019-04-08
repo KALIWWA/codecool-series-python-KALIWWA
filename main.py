@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for
 from data import queries
+from data_manager import shows, seasons
 
 app = Flask('codecool_series')
 
@@ -17,7 +18,7 @@ def design():
 
 @app.route('/tv-show/<show_id>')
 def show_details(show_id):
-    show = queries.get_show_details(show_id)
+    show = shows.check_data(show_id)
     return render_template('show_details.html', show=show)
 
 
