@@ -1,7 +1,7 @@
-from data import data_manager
+from data import db_connection
 
 
-@data_manager.connection_handler
+@db_connection.connection_handler
 def get_shows(cursor):
     sql_string = """
                 SELECT id, title 
