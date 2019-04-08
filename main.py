@@ -15,6 +15,12 @@ def design():
     return render_template('design.html')
 
 
+@app.route('/tv-show/<show_id>')
+def show_details(show_id):
+    show = queries.get_show_details(show_id)
+    return render_template('show_details.html', show=show)
+
+
 def main():
     app.run(debug=True)
 
