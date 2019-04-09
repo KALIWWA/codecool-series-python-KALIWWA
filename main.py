@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from data import queries
-from data_manager import shows, seasons
+from data_manager import shows, seasons, actors
 
 app = Flask('codecool_series')
 
@@ -32,6 +32,10 @@ def json_table():
 def show_season_details(show_id, season_id):
     pass
 
+@app.route('/actors')
+def show_actors():
+    top_actors = actors.check_data()
+    return render_template('actors.html', top_actors=top_actors)
 
 def main():
     app.run(debug=True)
