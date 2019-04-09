@@ -78,3 +78,18 @@ def get_season_details(cursor, season_id):
     cursor.execute(sql_string, {'season_id': season_id})
     season_details = cursor.fetchone()
     return season_details
+
+
+@db_connection.connection_handler
+def get_actors_and_shows(cursor):
+    sql_string = """SELECT
+                    actors.name,
+                    shows.title
+                    FROM shows
+                    LEFT JOIN show_characters on shows.id = show_characters.show_id
+                    RIGHT JOIN actors on show_characters.actor_id = actors.id
+                    ORDER BY actors.name
+                    LIMIT 20"""
+    cursor.excecute(sql_string)
+    actors = cursor.fetchall()
+    return actors
