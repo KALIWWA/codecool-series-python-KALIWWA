@@ -28,6 +28,7 @@
 
     <!-- page specific styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style/detailed-view.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/modal.css') }}">
 
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/main.js') }}" defer type="module"></script>
@@ -68,6 +69,14 @@
             {% endfor %}
             </tbody>
         </table>
+
+    <div class="modal_bg">
+        <div class="modal-content">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </div>
 
     <footer>
         Copyright, KALI
