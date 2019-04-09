@@ -1,0 +1,13 @@
+.modal_bg {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    display: flex;
+}
+
+.modal-content {
+    height: 500px;
+    width: 300px;
+    background-color: #fff;
+}
