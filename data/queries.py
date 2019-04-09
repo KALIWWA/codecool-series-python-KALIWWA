@@ -90,6 +90,6 @@ def get_actors_and_shows(cursor):
                     RIGHT JOIN actors on show_characters.actor_id = actors.id
                     ORDER BY actors.name
                     LIMIT 20"""
-    cursor.excecute(sql_string)
+    cursor.execute(sql_string)
     actors = cursor.fetchall()
     return actors
