@@ -37,6 +37,11 @@ def show_actors():
     top_actors = actors.check_data()
     return render_template('actors.html', top_actors=top_actors)
 
+@app.route('/actors-data')
+def send_actors():
+    all_actors = actors.check_data()
+    return jsonify(all_actors)
+
 def main():
     app.run(debug=True)
 

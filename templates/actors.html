@@ -32,6 +32,7 @@
 
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/main.js') }}" defer type="module"></script>
+    <script src="{{ url_for('static', filename='js/actors.js') }}" defer type="module"></script>
 
 </head>
 
@@ -62,7 +63,8 @@
             </thead>
             <tbody>
             {% for data in top_actors %}
-                <tr><td>{{ data.name }}</td>
+                <tr>
+                    <td><a href=""> {{ data.name }}</a></td>
                     <td>{{ data.title }}</td>
                 </tr>
 
@@ -72,6 +74,7 @@
 
     <div class="modal_bg">
         <div class="modal-content">
+
             <ul>
                 <li></li>
             </ul>
